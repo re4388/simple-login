@@ -1,0 +1,12 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  restartPolicy: Never
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["sh", "-c"]
+    args: ["echo $(date); sleep 1; echo 'Hello'; echo $(date)"]

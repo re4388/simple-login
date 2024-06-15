@@ -19,14 +19,36 @@ spec:
         name: db-pod
         app: prac-node-login
     spec:
+      nodeSelector:
+        role: "agent"
       containers:
         - name: db
-          image: mysql:8.1
+          image: mysql:8.1.0
           ports:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: login-app-secrets
+                  name: db-secrets
                   key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_INIT_DATABASE
+
+---
+# using --- to separate different spec, then they can be in the same yaml file
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: ironman
+  name: db-secrets
+  labels:
+    name: db-secrets
+    app: prac-node-login
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: cm9vdHB3ZDEyMzQ=
+  MYSQL_INIT_DATABASE: dGVzdA==

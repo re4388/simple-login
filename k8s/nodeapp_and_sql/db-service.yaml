@@ -1,4 +1,3 @@
-# service
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,8 +7,10 @@ metadata:
     name: db-service
     app: prac-node-login
 spec:
-  selector:
-    name: db-pod # map the pod label
+  # type: ClusterIP
+  selector: # map the pod label
+    name: db-pod
+    app: prac-node-login
   ports:
     - protocol: TCP
       port: 3306

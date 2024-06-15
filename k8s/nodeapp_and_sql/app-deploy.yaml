@@ -7,7 +7,7 @@ metadata:
     name: login-app-deploy
     app: prac-node-login
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       name: login-app-pod
@@ -19,6 +19,8 @@ spec:
         name: login-app-pod
         app: prac-node-login
     spec:
+      nodeSelector:
+        role: agent
       containers:
         - name: login-app
           image: chihhuiw/node-simple-login:1.0.5
