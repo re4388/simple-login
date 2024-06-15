@@ -28,7 +28,5 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: env-secrets
+                  name: login-app-secrets
                   key: MYSQL_ROOT_PASSWORD
-      nodeSelector:
-        role: "agent"

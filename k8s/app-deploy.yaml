@@ -21,11 +21,9 @@ spec:
     spec:
       containers:
         - name: login-app
-          image: chihhuiw/node-simple-login:1.0.4
+          image: chihhuiw/node-simple-login:1.0.5
           ports:
             - containerPort: 8000
           envFrom:
             - secretRef:
-                name: env-secrets
-      nodeSelector:
-        role: "agent"
+               name: login-app-secrets
