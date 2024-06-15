@@ -2,6 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: ironman
   name: db-service
   labels:
     name: db-service
