@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: simple.hello.com
+      http:
+        paths:
+          - path: /dotnet
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-world-app-svc
+                port:
+                  number: 5000
+          - path: /express
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-express-app-svc
+                port:
+                  number: 5000
