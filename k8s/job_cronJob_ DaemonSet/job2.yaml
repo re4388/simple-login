@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: random-error-job-nopara
+spec:
+  completions: 3
+  # parallelism: 1
+  template:
+    spec:
+      containers:
+        - name: random-error
+          image: kodekloud/random-error
+      restartPolicy: Never
